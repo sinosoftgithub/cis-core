@@ -12,3 +12,17 @@ git push local develop || 推送到远程分支
 git branch -d feature || 删除本地分支
 git branch || 查看所有本地分支
 git rebase master develop || 以master为基准，将develop的修改放到master之后
+
+分支管理规范：
+1、master分支，生产分支，只在重大版本时更新，存在于github(origin)，公司中心库(local)以及本地。
+2、develop分支，开发分支，存在于公司中心库(local)以及本地。
+3、feature分支，新特性分支，只存在于每个开发人员本地。
+4、master分支由配置管理人员管理、合并、备份。
+5、develop分支由每个开发人员合并，由配置管理人员管理、备份。
+6、开发人员新开发一个新特性时，从develop新建一个feature分支到本地。git checkout -b myfeature develop
+7、开发完成后，rebase到develop分支中。git rebase develop myfeature，然后checkout到develop中，merge myfeature
+8、开发分支develop稳定后，准备上master，需要配置管理员从develop新建测试分支release。
+9、测试出现问题时，和开发develop一样进行新增特性。测试通过后，rebase+merge到master以及develop。
+10、master出现bug，需要配置管理员从master新建测试分支hotfix。
+11、完成后，同时rebase+merge到master以及develop。
+12、注意！master和develop不能以其他分支为基准进行rebase。
