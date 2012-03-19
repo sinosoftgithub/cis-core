@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.sinosoft.core.domain.model.user">
+	<class
+		name="User2menugroup"
+		table="user2menugroup"
+	>
+		<meta attribute="sync-DAO">true</meta>
+
+		<id
+			name="Id"
+			type="java.lang.Long"
+			column="id"
+		>
+			<generator class="native"/>
+		</id>
+
+		<many-to-one
+			name="User"
+			column="user_id"
+			class="User"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Menugroup"
+			column="menugroup_id"
+			class="Menugroup"
+			not-null="false"
+		>
+		</many-to-one>
+
+
+	</class>	
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+  <session-factory>
+
+     <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+     <property name="hibernate.connection.url">jdbc:mysql://localhost/jbpm?characterEncoding=gb2312</property>
+     <property name="hibernate.connection.username">root</property>
+     <property name="hibernate.connection.password">root</property>
+     <!--<property name="hibernate.hbm2ddl.auto">create-drop</property>-->
+     <property name="hibernate.format_sql">false</property>
+     <property name="hibernate.show_sql">true</property>
+     <!-- This is a tweaked version of Hibernate's DriverManagerConnectionProvider which works with Mule's hot deployment -->
+     <property name="hibernate.connection.provider_class">org.hibernate.connection.SimpleConnectionProvider</property>
+
+     <!-- This property improves thread contention with Mule services a bit -->
+     <property name="hibernate.transaction.flush_before_completion">true</property>
+     <!--
+     <property name="hibernate.cache.use_second_level_cache">false</property>
+    -->
+
+     <!-- Standard jBPM mappings -->
+     <mapping resource="jbpm.repository.hbm.xml" />
+     <mapping resource="jbpm.history.hbm.xml" />
+     <mapping resource="jbpm.task.hbm.xml" />
+     <mapping resource="jbpm.identity.hbm.xml" />
+
+     <!-- Hibernate defaults Derby's BLOB columns to be too small -->
+     <mapping resource="jbpm.execution.derby.hbm.xml" />
+	 
+  </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,12 @@
+git ignore已被管理的文件要忽略：
+git rm -r --cached  src/main/webapp/WEB-INF/classes
+
+合并A分支的修改到B：
+git checkout A
+git A rebase B
+git checkout B
+git B merge A
+
+删除github远程分支：
+git push origin :develop
+git push localorigin :develop
